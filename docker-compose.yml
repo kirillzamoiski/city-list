@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  city-db:
+    container_name: postgres-city
+    image: postgres:14.1
+    ports:
+      - "5438:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: city
+    volumes:
+      - ./pgdata/:/etc/postgresql/data/
+
+  city-service:
+    container_name: city-service
+    image: city-service:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - city-db
