@@ -13,7 +13,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/cities")
-public class AlertResource {
+public class CityResource {
 
     private final CityService service;
 
